@@ -7,16 +7,15 @@ Documentation for the Bigcommerce API(should add something here)
 # Group Catalog
 Bigcommerce Catalog 
 
+
 ## Products [/catalog/products]
 `/catalog/products`
 
-### getProducts [GET /catalog/products{?id,name,sku,upc,price,weight,condition,brand_id,date_modified,date_last_imported,is_visible,is_featured,is_free_shipping,inventory_level,inventory_low,out_of_stock,total_sold,type,categories,keyword,keyword_context,status,include,include_fields,exclude_fields,availability,price_list_id,page,limit,direction,sort}]
++ Attributes (array[ProductCollectionResponse])
+
+### Get a Product [GET /catalog/products{?id,name,sku,upc,price,weight,condition,brand_id,date_modified,date_last_imported,is_visible,is_featured,is_free_shipping,inventory_level,inventory_low,out_of_stock,total_sold,type,categories,keyword,keyword_context,status,include,include_fields,exclude_fields,availability,price_list_id,page,limit,direction,sort}]]
 Returns a paginated collection of `Products` objects from the BigCommerce Catalog.
 The results can be filtered. 
-An example of a filtered request: 
-`https://api.bigcommerce.com/stores/{{store_id}}/v3/catalog/products?id={{id}}&name={{name}}&sku={{sku}}&upc={{upc}}&price={{price}}&weight={{weight}}&condition={{condition}}&brand_id={{brand_id}}&date_modified={{date_modified}}&date_last_imported={{date_last_imported}}&is_visible={{is_visible}}&is_featured={{is_featured}}&is_free_shipping={{is_free_shipping}}&inventory_level={{inventory_level}}&inventory_low={{inventory_low}}&out_of_stock={{out_of_stock}}&total_sold={{total_sold}}&type={{type}}&categories={{categories}}&keyword={{keyword}}&keyword_context={{keyword_context}}&status={{status}}&include={{include}}&include_fields={{include_fields}}&exclude_fields={{exclude_fields}}&availability={{availability}}&price_list_id={{price_list_id}}&page={{page}}&limit={{limit}}&direction={{direction}}&sort={{sort}}`
-
-<div class="test"></div>
 
 + Parameters
     + id (number, optional)
@@ -179,9 +178,7 @@ An example of a filtered request:
 
         An array of products and metadata.
 
-
-
-    + Attributes (ProductCollectionResponse)
+    + Attributes (array[ProductCollectionResponse])
 
 
 ### createProduct [POST /catalog/products]
@@ -197,7 +194,6 @@ Creates a `Product` in the BigCommerce Catalog.
         A product.
 
 
-
     + Attributes (ProductResponse)
 
 
@@ -206,14 +202,10 @@ Creates a `Product` in the BigCommerce Catalog.
         `Product` was in conflict with another product. This is the result of duplicate unique values, such as name or SKU; a missing or invalid `category_id`, `brand_id`, or `tax_class id`; or a conflicting `bulk_pricing_rule`.
 
 
-
-
-
-
 + Response 422 
 
         `Product` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
-
+but
 
 ### deleteProducts [DELETE /catalog/products{?name,sku,price,weight,condition,brand_id,date_modified,date_last_imported,is_visible,is_featured,inventory_level,total_sold,type,categories,keyword}]
 Deletes one or more `Product` objects from the BigCommerce Catalog.
@@ -282,6 +274,7 @@ Deletes one or more `Product` objects from the BigCommerce Catalog.
 + Response 204 
 
     Returns blank response
+
 
 
 ## Product by ProductId [/catalog/products/{product_id}]
