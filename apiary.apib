@@ -7,12 +7,6 @@ Documentation for the Bigcommerce API(should add something here)
 # Group Catalog
 Bigcommerce Catalog 
 
-
-## Products [/catalog/products]
-`/catalog/products`
-
-+ Attributes (array[ProductCollectionResponse])
-
 ### Get a Product [GET /catalog/products{?id,name,sku,upc,price,weight,condition,brand_id,date_modified,date_last_imported,is_visible,is_featured,is_free_shipping,inventory_level,inventory_low,out_of_stock,total_sold,type,categories,keyword,keyword_context,status,include,include_fields,exclude_fields,availability,price_list_id,page,limit,direction,sort}]]
 Returns a paginated collection of `Products` objects from the BigCommerce Catalog.
 The results can be filtered. 
@@ -180,8 +174,7 @@ The results can be filtered.
 
     + Attributes (array[ProductCollectionResponse])
 
-
-### createProduct [POST /catalog/products]
+### Create a Products [POST /catalog/products]
 
 Creates a `Product` in the BigCommerce Catalog.
 
@@ -205,9 +198,8 @@ Creates a `Product` in the BigCommerce Catalog.
 + Response 422 
 
         `Product` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
-but
 
-### deleteProducts [DELETE /catalog/products{?name,sku,price,weight,condition,brand_id,date_modified,date_last_imported,is_visible,is_featured,inventory_level,total_sold,type,categories,keyword}]
+### Delete a Product [DELETE /catalog/products{?name,sku,price,weight,condition,brand_id,date_modified,date_last_imported,is_visible,is_featured,inventory_level,total_sold,type,categories,keyword}]
 Deletes one or more `Product` objects from the BigCommerce Catalog.
 + Parameters
     + name (string, optional)
@@ -275,18 +267,9 @@ Deletes one or more `Product` objects from the BigCommerce Catalog.
 
     Returns blank response
 
-
-
-## Product by ProductId [/catalog/products/{product_id}]
-`/catalog/products/{product_id}`
-
-+ Parameters
-    + product_id (number, required)
-
-        The ID of the `Product` to which the resource belongs.
-
-### getProductById [GET /catalog/products/{product_id}{?include,include_fields,exclude_fields,price_list_id}]
-Returns a `Product` from the BigCommerce Catalog.
+### Get a Product by Id [GET /catalog/products/{product_id}{?include,include_fields,exclude_fields,price_list_id}]
+Returns a `Product` from the BigCommerce Catalog. 
+**Required** `{product_id}`
 
 + Parameters        
     + include (enum[string], optional)
@@ -312,23 +295,19 @@ Returns a `Product` from the BigCommerce Catalog.
 
         The ID of the `Price List`.
 
-
 + Response 200 (application/json)
 
         A product.
 
-
-
     + Attributes (ProductResponse)
-
 
 + Response 404 
 
         The resource was not found.
 
-
-### updateProduct [PUT /catalog/products/{product_id}]
+### Update a Product by Id [PUT /catalog/products/{product_id}]
 Updates a `Product` in the BigCommerce Catalog.
+**Required** `{product_id}`
 
 + Request (application/json)
     + Attributes (ProductPut)
@@ -337,8 +316,6 @@ Updates a `Product` in the BigCommerce Catalog.
 + Response 200 (application/json)
 
         A product.
-
-
 
     + Attributes (ProductResponse)
 
@@ -351,30 +328,21 @@ Updates a `Product` in the BigCommerce Catalog.
 
         `Product` was in conflict with another product. This is caused by: duplicate unique values, such as name or SKU; a missing category, brand, or tax_class with which the product is being associated; or a conflicting bulk pricing rule.
 
-
 + Response 422 
 
         `Product` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
 
-
-### deleteProductById [DELETE /catalog/products/{product_id}]
+### Delete a Product by Id [DELETE /catalog/products/{product_id}]
 Deletes a `Product` object from the BigCommerce Catalog.
-
+**Required** `{product_id}`
 
 + Response 204 
 
-    Blank Response
+#Group Catalog Images
 
-## Product Images By Product Id [/catalog/products/{product_id}/images]
-`/catalog/products/{product_id}/images`
-
-+ Parameters
-    + product_id (number, required)
-
-        The ID of the `Product` to which the resource belongs.
-
-### getProductImages [GET /catalog/products/{product_id}/images{?page,limit,include_fields,exclude_fields}]
+### Get Product Images [GET /catalog/products/{product_id}/images{?page,limit,include_fields,exclude_fields}]
 Gets all images on a product.
+**Required** `{product_id}`
 
 + Parameters
 
@@ -399,18 +367,15 @@ Gets all images on a product.
 
         List of product images and metadata.
 
-
-
     + Attributes (ProductImageCollectionResponse)
-
 
 + Response 404 
 
         The product ID does not exist.
 
-
-### createProductImage [POST /catalog/products/{product_id}/images]
+### Create a Product Image [POST /catalog/products/{product_id}/images]
 Creates an image on a product. Publicly accessible URLs and files (form post) are valid parameters.
+**Required** `{product_id}`
 
 + Request (application/json)
     + Attributes (ProductImagePost)
@@ -420,8 +385,6 @@ Creates an image on a product. Publicly accessible URLs and files (form post) ar
 
         A product image.
 
-
-
     + Attributes (ProductImageResponse)
 
 
@@ -429,22 +392,10 @@ Creates an image on a product. Publicly accessible URLs and files (form post) ar
 
         The product ID does not exist.
 
-
-## Product Images with ImageId [/catalog/products/{product_id}/images/{image_id}]
-`/catalog/products/{product_id}/images/{image_id}`
-
-+ Parameters
-    + product_id (number, required)
-
-        The ID of the `Product` to which the resource belongs.
-
-    + image_id (number, required)
-
-        The ID of the `Image` that is being operated on.
-
-
-### getProductImageById [GET /catalog/products/{product_id}/images/{image_id}{?include_fields,exclude_fields}]
+### Get a Product Image by Id [GET /catalog/products/{product_id}/images/{image_id}{?include_fields,exclude_fields}]
 Gets image on a product.
+**Required** `{product_id}`, `{image_id}`
+
 + Parameters
     + include_fields (string, optional)
 
@@ -459,18 +410,15 @@ Gets image on a product.
 
         An array of product images and metadata.
 
-
-
     + Attributes (ProductImageResponse)
-
 
 + Response 404 
 
         The resource was not found.
 
-
 ### updateProductImage [PUT /catalog/products/{product_id}/images/{image_id}]
 Updates an image on a product. Publicly accessible URLs and files (form post) are valid parameters.
+**Required** `{product_id}`, `{image_id}`
 
 + Request (application/json)
     + Attributes (ProductImageBase)
@@ -489,12 +437,14 @@ Updates an image on a product. Publicly accessible URLs and files (form post) ar
 
         The resource was not found.
 
-
 ### deleteProductImage [DELETE /catalog/products/{product_id}/images/{image_id}]
 Deletes a `ProductImage` in the BigCommerce Catalog.
 
+**Required** `{product_id}`, `{image_id}`
+
 + Response 204 
 
+#Group Catalog Videos
 
 ## Products Videos By Product Id [/catalog/products/{product_id}/videos]
 `/catalog/products/{product_id}/videos`
@@ -504,9 +454,9 @@ Deletes a `ProductImage` in the BigCommerce Catalog.
 
         The ID of the `Product` to which the resource belongs.
 
-
 ### getProductVideos [GET /catalog/products/{product_id}/videos{?include_fields,exclude_fields}]
 Gets all videos on a product.
+**Required** `{product_id}`
 
 + Parameters
     + include_fields (string, optional)
@@ -522,13 +472,12 @@ Gets all videos on a product.
 
         List of product videos and metadata.
 
-
-
     + Attributes (ProductVideoCollectionResponse)
 
 
 ### createProductVideo [POST /catalog/products/{product_id}/videos]
 Creates a video on a product, using a video ID from a host site.
+**Required** `{product_id}`
 
 + Request (application/json)
     + Attributes (ProductVideoPost)
@@ -538,10 +487,7 @@ Creates a video on a product, using a video ID from a host site.
 
         A product video.
 
-
-
     + Attributes (ProductVideoResponse)
-
 
 + Response 404 
 
@@ -564,6 +510,7 @@ Creates a video on a product, using a video ID from a host site.
 
 ### getProductVideoById [GET /catalog/products/{product_id}/videos/{video_id}{?include_fields,exclude_fields}]
 Gets video on a product.
+
 + Parameters
     + include_fields (string, optional)
 
