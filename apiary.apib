@@ -6,6 +6,8 @@ Documentation for the Bigcommerce API(should add something here)
 
 # Group Catalog
 Bigcommerce Catalog 
+ing
+## Products [/catalog/products] 
 
 ### Get a Product [GET /catalog/products{?id,name,sku,upc,price,weight,condition,brand_id,date_modified,date_last_imported,is_visible,is_featured,is_free_shipping,inventory_level,inventory_low,out_of_stock,total_sold,type,categories,keyword,keyword_context,status,include,include_fields,exclude_fields,availability,price_list_id,page,limit,direction,sort}]]
 Returns a paginated collection of `Products` objects from the BigCommerce Catalog.
@@ -338,7 +340,7 @@ Deletes a `Product` object from the BigCommerce Catalog.
 
 + Response 204 
 
-#Group Catalog Images
+## Images [/catalog/products/product_id/images]
 
 ### Get Product Images [GET /catalog/products/{product_id}/images{?page,limit,include_fields,exclude_fields}]
 Gets all images on a product.
@@ -444,7 +446,6 @@ Deletes a `ProductImage` in the BigCommerce Catalog.
 
 + Response 204 
 
-#Group Catalog Videos
 
 ## Products Videos By Product Id [/catalog/products/{product_id}/videos]
 `/catalog/products/{product_id}/videos`
